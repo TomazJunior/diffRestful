@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.assertj.core.util.Files;
-import org.junit.Test;
 
 import junit.framework.TestCase;
 import models.Comparison;
@@ -19,11 +18,10 @@ public class ComparisonTest extends TestCase {
 		// delete comparisons folder
 		Files.delete(COMPARISONS_FOLDER.toFile());
 	}
-	
+
 	public void testCreateComparisonWithNullId() throws IOException, NullContainerException {
-		// create new comparison without id
-		
 		try {
+			// create new comparison without id
 			new Comparison(null);
 	        fail("Expected an NullContainerException to be thrown");
 	    } catch (NullContainerException nullContainerException) {
