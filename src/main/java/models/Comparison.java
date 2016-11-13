@@ -27,6 +27,10 @@ public class Comparison {
 	private final Path COMPARISONS_FOLDER = Paths.get(System.getProperty("user.dir"), "comparisons");
 	private Path path;
 
+	public static Comparison get (String id) throws NullContainerException {
+		return new Comparison(id);
+	}
+	
 	/**
 	 * Creates comparison container folder under COMPARISONS_FOLDER constant
 	 * 
@@ -35,7 +39,7 @@ public class Comparison {
 	 * @throws NullContainerException 
 	 * 		   throws when id is null	
 	 */
-	public Comparison(String id) throws NullContainerException {
+	private Comparison(String id) throws NullContainerException {
 		if (id == null) { throw new NullContainerException(); }
 		this.path = Paths.get(COMPARISONS_FOLDER.toString(), id);
 		if (!exists()) {

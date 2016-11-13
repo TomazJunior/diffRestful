@@ -24,7 +24,7 @@ public class WorkerTest extends TestCase {
 
 	public void testCompareWithoutLeftBase64() throws IOException, NullContainerException {
 		// create new comparison
-		Comparison comp = new Comparison("1");
+		Comparison comp = Comparison.get("1");
 
 		WorkerCreator.run(new IThreadListener() {
 			@Override
@@ -36,7 +36,7 @@ public class WorkerTest extends TestCase {
 
 	public void testCompareWithoutRightBase64() throws IOException, NullContainerException {
 		// create new comparison
-		Comparison comp = new Comparison("1");
+		Comparison comp = Comparison.get("1");
 		comp.setLeft("SGVsbG8gV29yZCENCg==");
 
 		WorkerCreator.run(new IThreadListener() {
@@ -49,7 +49,7 @@ public class WorkerTest extends TestCase {
 
 	public void testCompareIdenticalBase64() throws IOException, NullContainerException {
 		// create new comparison
-		Comparison comp = new Comparison("1");
+		Comparison comp = Comparison.get("1");
 		comp.setLeft("SGVsbG8gV29yZCENCg==");
 		comp.setRight("SGVsbG8gV29yZCENCg==");
 
@@ -63,7 +63,7 @@ public class WorkerTest extends TestCase {
 
 	public void testCompareDifferentBase64() throws IOException, NullContainerException {
 		// create new comparison
-		Comparison comp = new Comparison("1");
+		Comparison comp = Comparison.get("1");
 		comp.setLeft("SGVsbG8gV29yZCENCg==");
 		comp.setRight("SGVsbG8gV29yZDEhDQo=");
 
@@ -77,7 +77,7 @@ public class WorkerTest extends TestCase {
 	
 	public void testCompareDifferentSizeBase64() throws IOException, NullContainerException {
 		// create new comparison
-		Comparison comp = new Comparison("1");
+		Comparison comp = Comparison.get("1");
 		comp.setLeft("SGVsbG8gV29yZCENCggtrrr==");
 		comp.setRight("SGVsbG8gV29yZDEhDQo=");
 

@@ -1,7 +1,5 @@
 package api.v1;
 
-import java.io.IOException;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,8 +35,9 @@ public class DiffController {
 	 */
     @RequestMapping(value = "/v1/diff/{id}/{position:left|right}", method = RequestMethod.POST)
     public ResponseEntity<JsonResult> insert(@RequestBody JsonInput inputData, @PathVariable("id") String id, @PathVariable("position") String position) throws NullContainerException {
-    	Comparison comparison = new Comparison(id);
+    	
     	try {
+    		Comparison comparison = Comparison.get(id);
 	    	switch (position) {
 			case "left":
 				comparison.setLeft(inputData.getData());
@@ -47,7 +46,7 @@ public class DiffController {
 				comparison.setRight(inputData.getData());
 				break;
 			}
-    	} catch (IOException e) {
+    	} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new JsonResult(e.getMessage()));
 		}
@@ -64,7 +63,7 @@ public class DiffController {
      */
     @RequestMapping(value = "/v1/diff/{id}", method = RequestMethod.GET)
     public DeferredResult<JsonResult> result(@PathVariable("id") String id) throws NullContainerException {
-    	Comparison comparison = new Comparison(id);
+    	Comparison comparison = Comparison.get(id);
     	return comparison.getResult();
     }
 }

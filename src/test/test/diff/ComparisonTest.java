@@ -24,7 +24,7 @@ public class ComparisonTest extends TestCase {
 	public void testCreateComparisonWithNullId() throws IOException, NullContainerException {
 		try {
 			// create new comparison without id
-			new Comparison(null);
+			Comparison.get(null);
 	        fail("Expected an NullContainerException to be thrown");
 	    } catch (NullContainerException nullContainerException) {
 	        assertEquals(nullContainerException.getMessage(), "Container id not informed");
@@ -35,7 +35,7 @@ public class ComparisonTest extends TestCase {
 		String leftEncodedContent =  "SGVsbG8gV29yZCENCg==";
 		String rightEncodedContent = "SGVsbG8gV29yZCEhDQo=";
 		
-		Comparison comparison = new Comparison("1");
+		Comparison comparison = Comparison.get("1");
 		// set left side base64 content
 		comparison.setLeft(leftEncodedContent);
 		// set right side base64 content
@@ -53,7 +53,7 @@ public class ComparisonTest extends TestCase {
 		
 		String containerId = "1";
 		// create new comparison without id
-		Comparison comparison = new Comparison(containerId);
+		Comparison comparison = Comparison.get(containerId);
 		//verify id comparisons folder was created
 		assertTrue(COMPARISONS_FOLDER.toFile().exists());
 		//verify if id container was created
