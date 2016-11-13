@@ -23,3 +23,5 @@ gradle-app.setting
 # Cache of project
 .gradletasknamecache
 
+# jmeter
+jmeter.log
