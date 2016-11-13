@@ -12,6 +12,8 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 
+defaultTasks 'clean', 'build'
+
 jar {
     baseName = 'gs-rest-service'
     version =  '0.1.0'
@@ -25,6 +27,17 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+	compile 'org.slf4j:slf4j-api:1.7.21'
     compile("org.springframework.boot:spring-boot-starter-web")
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    // testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile 'org.assertj:assertj-core:3.5.2'
+    testCompile 'junit:junit:4.12'
+}
+
+sourceSets {
+    test {
+        java {
+            srcDirs = ["src/test"]
+        }
+    }
 }

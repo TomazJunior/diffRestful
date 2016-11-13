@@ -67,8 +67,6 @@ public class Worker extends NotifyThread{
 	 */
 	@Override
 	public void doRun(String options, Path left, Path right) throws IOException {
-		// TODO Auto-generated method stub
-		System.out.println("doRun start");
 		
 		ProcessBuilder processBuilder;
 		Process process;
@@ -102,7 +100,7 @@ public class Worker extends NotifyThread{
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
 			this.output.append(e.getMessage());
 		} finally {
 			if (reader != null) { reader.close(); }
