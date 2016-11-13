@@ -14,6 +14,7 @@ import org.springframework.web.context.request.async.DeferredResult;
 import models.Comparison;
 import models.JsonInput;
 import models.JsonResult;
+import models.NullContainerException;
 
 /**
  * 
@@ -31,9 +32,11 @@ public class DiffController {
 	 * @param id comparison id
 	 * @param position position encoded binary data to compare, possible values: left or right
 	 * @return JSON Object
+	 * @throws NullContainerException 
+	 * 		   throws when id is null	
 	 */
     @RequestMapping(value = "/v1/diff/{id}/{position:left|right}", method = RequestMethod.POST)
-    public ResponseEntity<JsonResult> insert(@RequestBody JsonInput inputData, @PathVariable("id") String id, @PathVariable("position") String position) {
+    public ResponseEntity<JsonResult> insert(@RequestBody JsonInput inputData, @PathVariable("id") String id, @PathVariable("position") String position) throws NullContainerException {
     	Comparison comparison = new Comparison(id);
     	try {
 	    	switch (position) {
@@ -56,9 +59,11 @@ public class DiffController {
      * 
      * @param id comparison id
      * @return JSON Object with diff-ed result
+	 * @throws NullContainerException 
+	 * 		   throws when id is null 
      */
     @RequestMapping(value = "/v1/diff/{id}", method = RequestMethod.GET)
-    public DeferredResult<JsonResult> result(@PathVariable("id") String id) {
+    public DeferredResult<JsonResult> result(@PathVariable("id") String id) throws NullContainerException {
     	Comparison comparison = new Comparison(id);
     	return comparison.getResult();
     }

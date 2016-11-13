@@ -32,8 +32,11 @@ public class Comparison {
 	 * 
 	 * @param id 
 	 * 	      container id
+	 * @throws NullContainerException 
+	 * 		   throws when id is null	
 	 */
-	public Comparison(String id) {
+	public Comparison(String id) throws NullContainerException {
+		if (id == null) { throw new NullContainerException(); }
 		this.path = Paths.get(COMPARISONS_FOLDER.toString(), id);
 		if (!exists()) {
 			createDirectory();
@@ -41,7 +44,8 @@ public class Comparison {
 	}
 
 	private Boolean createDirectory() {
-		return new File(path.toString()).mkdir();
+		// create any intermediate directory if it does not exist
+		return new File(path.toString()).mkdirs();
 	}
 
 	/**
