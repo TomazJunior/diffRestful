@@ -1,4 +1,4 @@
-package diff;
+package test.diff;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -6,6 +6,9 @@ import java.nio.file.Paths;
 
 import org.assertj.core.util.Files;
 
+import diff.IThreadListener;
+import diff.NotifyThread;
+import diff.WorkerCreator;
 import junit.framework.TestCase;
 import models.Comparison;
 import models.NullContainerException;
