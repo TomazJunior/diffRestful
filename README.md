@@ -27,9 +27,9 @@ Restful api to provide end points to compare Base64 binary data.
         - If not of equal size just return {"output":"not of equal size"}
         - If of same size provide insight in where the diffs are {"output":"1cHello Word.."}, in this example the left decoded value is SGVsbG8gV29yZCE= (decoded value: Hello Word!) and right decoded value is SGVsbG8gV29yZC4= (decoded value: Hello Word.)
      - On the server side, left and right files will be decoded and two new files will be created (left_decoded and right_decoded), after that the unix "diff" utility will be forked and a native process will be created (diff -ed left_encoded right encoded) and the result of diff procces will be send back as response.
-     
+          
 ## Running
-Run following command under DiffRestfull folder ./gradlew bootRun
+Run following command under DiffRestfull folder ./gradlew bootRun. A new instance of project will run at localhost:8080.
 
 ## Tests
 
