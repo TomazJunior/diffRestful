@@ -16,12 +16,10 @@ import org.mockito.MockitoAnnotations;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import com.google.gson.Gson;
 
@@ -50,6 +48,7 @@ public class DiffControllerTest extends TestCase {
 		mockMvc.perform(post("/v1/diff/{id}/{position:left|right}", "1", "left")).andExpect(status().is4xxClientError());		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public void testErrorInsertingLeftData() throws Exception {
 		
 		PowerMockito.mockStatic(Comparison.class);
@@ -63,6 +62,7 @@ public class DiffControllerTest extends TestCase {
 				.andExpect(status().is5xxServerError());
 	}
 
+	@SuppressWarnings("unchecked")
 	public void testErrorInsertingRightData() throws Exception {
 		
 		PowerMockito.mockStatic(Comparison.class);

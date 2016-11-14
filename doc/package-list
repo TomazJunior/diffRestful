@@ -2,3 +2,5 @@ api.v1
 config
 diff
 models
+test.api
+test.diff
